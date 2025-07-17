@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg , rgb(130, 130, 130) , rgb(255, 255, 255))  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gameContainer{
+    margin-top: 50px;
+}
+
+canvas{
+    border: 2px solid black;
+    background-color: white;
+}
+
+.header{
+    display: flex;
+    position: relative;
+}
+
+.header .score{
+    right: 0;
+    position: absolute;
+    font-size: 1.4rem;
+    font-weight: bold;
+
+}
+
+
+#reset{
+    padding: 10px;
+    width: 90px;
+    border-radius: 20px;
+    background-color: gray;
+    outline: none;
+    font-size: bold ;
+    color: white;
+    border: none ;
+
+}
