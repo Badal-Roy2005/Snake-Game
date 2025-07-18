@@ -1,52 +1,124 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
 }
 
-body{
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg , rgb(130, 130, 130) , rgb(255, 255, 255))  ;
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgb(76, 76, 76), rgb(51, 51, 51));
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameContainer {
+  margin-top: 50px;
+}
+
+canvas {
+  border: 2px solid black;
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  position: relative;
+  color: white;
+}
+
+.header h2 {
+  font-size: 1.2rem;
+  /* position: absolute; */
+  /* left: 0; */
+}
+
+.header .score {
+  right: 0;
+  font-size: 1.2rem;
+  /* font-size: .7rem; */
+  position: absolute;
+
+  font-weight: bold;
+}
+
+#reset {
+  padding: 10px;
+
+  border-radius: 10px;
+
+  color: white;
+  outline: none;
+
+margin: 15px;
+  width: 200px;
+  height: 50px;
+  background: linear-gradient(pink, purple);
+  border: 2px solid black;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.buttons {
+    display: none;
+}
+
+.buttons button {
+  background-color: rgb(127, 127, 228);
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+
+
+
+@media (max-width: 400px) {
+  .gameContainer canvas {
+    width: 300px;
+    height: 300px;
+  }
+
+  .buttons {
+    width: 230px;
+    height: 200px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-}
-
-.gameContainer{
-    margin-top: 50px;
-}
-
-canvas{
-    border: 2px solid black;
-    background-color: white;
-}
-
-.header{
-    display: flex;
+    justify-content: center;
     position: relative;
-}
+    margin-top: 30px;
+  }
 
-.header .score{
-    right: 0;
+  .buttons button {
+    width: 70px;
+    height: 70px;
+  }
+
+  .buttons #Up-key {
     position: absolute;
-    font-size: 1.4rem;
-    font-weight: bold;
+    top: 0;
+  }
 
-}
+  .buttons #Down-key {
+    position: absolute;
+    bottom: 0;
+  }
 
+  .buttons #Right-key {
+    position: absolute;
+    right: 0;
+  }
+  .buttons #Left-key {
+    position: absolute;
+    left: 0;
+  }
 
-#reset{
-    padding: 10px;
-    width: 90px;
-    border-radius: 20px;
-    background-color: gray;
-    outline: none;
-    font-size: bold ;
-    color: white;
-    border: none ;
-
+  #reset {
+    margin-top: 70px;
+  }
 }

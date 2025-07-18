@@ -2,21 +2,30 @@ const gameBoard = document.getElementById("gameBoard");
 const ctx = gameBoard.getContext("2d");
 const scoreText = document.getElementById("scoreText");
 const reset = document.getElementById("reset");
+const upkey = document.getElementById("Up-key");
+const downkey = document.getElementById("Down-key");
+const rightkey = document.getElementById("Right-key");
+const leftkey = document.getElementById("Left-key");
 
 const gameWidth = gameBoard.width;
 const gameHeight = gameBoard.height;
 const boardBackground = "white";
 const snakeColor = "green";
-const snakeBorder = "black";
+const snakeBorder = "white";
 const foodColor = "red";
 
-let unitSize = 25;
+const canvasSize = Math.min(gameWidth , gameHeight);
+
+const gridSize = 20;
+
+unitSize = canvasSize / gridSize;
 let running = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
 let foodX;
 let foodY;
 let score = 0;
+let directionChanged = false;
 
 // snake body
 
@@ -36,7 +45,7 @@ gameStart();
 
 function gameStart() {
   running = true;
-  scoreText.textContent = score;
+  scoreText.textContent = `SCORE : ${score}`;
   CreateFood();
   drawFood();
   nextTick();
@@ -51,6 +60,7 @@ function nextTick() {
       drawSnake();
       drawFood();
       checkGameOver();
+      directionChanged = false;
       nextTick();
     }, 70);
   } else {
@@ -87,7 +97,7 @@ function moveSnake() {
   // if the food is eaten size will increase
   if (snake[0].x == foodX && snake[0].y == foodY) {
     score += 1;
-    scoreText.textContent = score;
+    scoreText.textContent = `SCORE : ${score}`;
     CreateFood();
   } else {
     snake.pop();
@@ -186,4 +196,51 @@ function resetGame() {
   ];
 
   gameStart();
+}
+
+// adding key functionality for mobile users
+
+upkey.addEventListener("click", () => touchDirection("UP"));
+downkey.addEventListener("click", () => touchDirection("DOWN"));
+leftkey.addEventListener("click", () => touchDirection("LEFT"));
+rightkey.addEventListener("click", () => touchDirection("RIGHT"));
+
+function touchDirection(dir) {
+  if (directionChanged) return;
+
+  const goingUp = yVelocity == -unitSize;
+  const goingDown = yVelocity == unitSize;
+  const goingLeft = xVelocity == -unitSize;
+  const goingRight = xVelocity == unitSize;
+
+  switch (dir) {
+    case "LEFT":
+      if (!goingRight) {
+        xVelocity = -unitSize;
+        yVelocity = 0;
+        directionChanged = true;
+      }
+      break;
+    case "RIGHT":
+      if (!goingLeft) {
+        xVelocity = unitSize;
+        yVelocity = 0;
+        directionChanged = true;
+      }
+      break;
+    case "UP":
+      if (!goingDown) {
+        xVelocity = 0;
+        yVelocity = -unitSize;
+        directionChanged = true;
+      }
+      break;
+    case "DOWN":
+      if (!goingUp) {
+        xVelocity = 0;
+        yVelocity = unitSize;
+        directionChanged = true;
+      }
+      break;
+  }
 }
